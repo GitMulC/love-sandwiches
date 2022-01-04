@@ -51,7 +51,7 @@ def validate_data(values):
     except ValueError as e:
         print(f'Invalid data: {e}, please try again.\n')
         return False
-    
+
     return True
 
 
@@ -95,13 +95,13 @@ def calculate_surplus_data(sales_row):
     stock = SHEET.worksheet('stock').get_all_values()
     stock_row = stock[-1]
 
-
     surplus_data = []
     for stock, sales in zip(stock_row, sales_row):
         surplus = int(stock) - sales
         surplus_data.append(surplus)
 
     return surplus_data
+
 
 def get_last_5_entries_sales():
     """
@@ -115,7 +115,7 @@ def get_last_5_entries_sales():
     for ind in range(1, 7):
         column = sales.col_values(ind)
         columns.append(column[-5:])
-    
+
     return columns
 
 
@@ -147,6 +147,7 @@ def main():
     sales_columns = get_last_5_entries_sales()
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, 'stock')
+
 
 print('Welcome to Love Sandwiches Data Automation')
 main()
